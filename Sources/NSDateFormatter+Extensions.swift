@@ -69,7 +69,7 @@ extension DateFormatter {
 			components.weekday = dayNumber
             let date = calendar.nextDate(after: searchDate, matching: components, matchingPolicy: .strict)!
 			let dayString = DateFormatter.weekdayFormatter.string(from: date)
-			if (days.contains(dayString) == false) {
+			if days.contains(dayString) == false {
 				daysOfWeekArray.append(dayString)
 			}
 		}

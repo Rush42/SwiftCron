@@ -106,13 +106,13 @@ public class CronExpression {
 				}
 
 				// If the field is not satisfied, then start over
-				if (satisfied == false) {
+				if satisfied == false {
 					nextRun = fieldChecker.increment(nextRun, toMatchValue: part)
 					continue iteration
 				}
 
 				// Skip this match if needed
-				if (timesToSkip > 0) {
+				if timesToSkip > 0 {
 					_ = CronField(rawValue: 0)!.getFieldChecker().increment(nextRun, toMatchValue: part)
 					timesToSkip -= 1
 				}

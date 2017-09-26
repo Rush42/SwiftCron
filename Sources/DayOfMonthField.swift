@@ -5,7 +5,7 @@ class DayOfMonthField: Field, FieldCheckerInterface {
 		let calendar = Calendar.current
 		let components = calendar.dateComponents([.day, .month, .year], from: date)
 
-		if (value == "L") {
+		if value == "L" {
 			return components.day == date.getLastDayOfMonth()
 		}
 
