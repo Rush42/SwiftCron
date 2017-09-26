@@ -1,7 +1,6 @@
 import Foundation
 
-class DayOfMonthField: Field, FieldCheckerInterface
-{
+class DayOfMonthField: Field, FieldCheckerInterface {
 	func isSatisfiedBy(_ date: Date, value: String) -> Bool {
 		let calendar = Calendar.current
 		let components = calendar.dateComponents([.day, .month, .year], from: date)
@@ -9,15 +8,13 @@ class DayOfMonthField: Field, FieldCheckerInterface
 		if (value == "L") {
 			return components.day == date.getLastDayOfMonth()
 		}
-        
+
         let day = components.day!
 		return self.isSatisfied(String(day), value: value)
 	}
 
-	func increment(_ date: Date, toMatchValue: String) -> Date
-	{
-		if let nextDate = date.nextDate(matchingUnit: .day, value: toMatchValue)
-		{
+	func increment(_ date: Date, toMatchValue: String) -> Date {
+		if let nextDate = date.nextDate(matchingUnit: .day, value: toMatchValue) {
 			return nextDate
 		}
 
@@ -32,8 +29,7 @@ class DayOfMonthField: Field, FieldCheckerInterface
         return calendar.date(byAdding: components, to: calendar.date(from: midnightComponents)!)!
 	}
 
-	func validate(_ value: String) -> Bool
-	{
+	func validate(_ value: String) -> Bool {
 		return StringValidator.isAlphanumeric(value)
 	}
 }

@@ -12,4 +12,3 @@ import SwiftCron
 class ViewController: UIViewController {
 
 }
-

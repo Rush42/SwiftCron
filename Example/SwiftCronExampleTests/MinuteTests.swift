@@ -35,25 +35,25 @@ class MinuteTests: XCTestCase {
 
 		XCTAssertTrue(calendar.isDate(nextRunDate!, equalTo: expectedDate!, toGranularity: .minute))
 	}
-    
+
     func testEvery15thAnd45thMinutes() {
         let dateToTestFrom = TestData.may11
-        
+
         let every15thand45thMinuteCron = CronExpression(minute: "15,45")!
-        
+
         let calendar = Calendar.current
         var components = calendar.dateComponents([.day, .year, .month, .hour, .minute], from: dateToTestFrom)
         components.minute! += 15
         let expectedNextRunDate = calendar.date(from: components)!
         var nextRunDate = every15thand45thMinuteCron.getNextRunDate(dateToTestFrom)!
         XCTAssertTrue(calendar.isDate(nextRunDate, equalTo: expectedNextRunDate, toGranularity: .minute))
-        
+
         components.minute! += 30
         let expectedFollowingRunDate = calendar.date(from: components)!
         nextRunDate = every15thand45thMinuteCron.getNextRunDate(addMinuteTo(date: nextRunDate))!
         XCTAssertTrue(calendar.isDate(nextRunDate, equalTo: expectedFollowingRunDate, toGranularity: .minute))
     }
-    
+
     func addMinuteTo(date: Date) -> Date {
         let calendar = Calendar.current
         var components = calendar.dateComponents([.day, .year, .month, .hour, .minute], from: date)

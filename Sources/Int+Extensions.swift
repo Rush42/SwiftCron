@@ -8,18 +8,14 @@
 
 import Foundation
 
-extension Int: CronFieldTranslatable
-{
-	public var cronFieldRepresentation: String
-	{
+extension Int: CronFieldTranslatable {
+	public var cronFieldRepresentation: String {
 		return String(self)
 	}
 }
 
-extension Int
-{
-	private static let ordinalNumberFormatter: NumberFormatter =
-		{
+extension Int {
+	private static let ordinalNumberFormatter: NumberFormatter = {
 			let formatter = NumberFormatter()
 			if #available(iOS 9, OSX 10.11, *) {
 				formatter.numberStyle = .ordinal
@@ -27,20 +23,17 @@ extension Int
 			return formatter
 	}()
 
-	private static let monthFormatter: DateFormatter =
-		{
+	private static let monthFormatter: DateFormatter = {
 			let formatter = DateFormatter()
 			formatter.dateFormat = "MMMM"
 			return formatter
 	}()
 
-	var ordinal: String
-	{
+	var ordinal: String {
         return Int.ordinalNumberFormatter.string(from: NSNumber(value: self))!
 	}
 
-	func convertToMonth() -> String
-	{
+	func convertToMonth() -> String {
 		assert(self < 13 && self > 0, "Not a valid month")
 
 		let calendar = Calendar.current

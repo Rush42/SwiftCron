@@ -8,8 +8,7 @@
 
 import Foundation
 
-class TestData
-{
+class TestData {
     static let feb28_2016 = DateBuilder().with(year: 2016).with(month: 2).with(day: 28).build()
     static let feb1_2016 = DateBuilder().with(year: 2016).with(month: 2).with(day: 1).build()
     static let may15_2016 = DateBuilder().with(year: 2016).with(month: 5).with(day: 15).build()

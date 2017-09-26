@@ -32,7 +32,7 @@ class DescriptionTests: XCTestCase {
 		let longDescription = cronExpression.longDescription
 		XCTAssertEqual(longDescription, expectedDescription)
 	}
-    
+
 //    func testDescriptionOfEveryMinuteIn2017() {
 //        let cronExpression = CronExpression(cronString: "* * * * * 2017")!
 //        
@@ -67,8 +67,7 @@ class DescriptionTests: XCTestCase {
 //    }
 
 	// 0 12 * * * *
-	func testDescriptionOfEveryDayAtMidday()
-	{
+	func testDescriptionOfEveryDayAtMidday() {
 		let cronExpression = CronExpression(minute: "0", hour: "12")!
 
 		let description = cronExpression.shortDescription
@@ -81,8 +80,7 @@ class DescriptionTests: XCTestCase {
 	}
 
 	// 0 0 14 * * *
-	func testDescriptionOfEveryMonthOn14th()
-	{
+	func testDescriptionOfEveryMonthOn14th() {
 		let cronExpression = CronExpression(minute: "0", hour: "0", day: "14")!
 
 		let description = cronExpression.shortDescription
@@ -95,8 +93,7 @@ class DescriptionTests: XCTestCase {
 	}
 
 	// 0 0 14 2 * *
-	func testDescriptionOfEveryYearFeb14th()
-	{
+	func testDescriptionOfEveryYearFeb14th() {
 		let cronExpression = CronExpression(minute: "0", hour: "0", day: "14", month: "2")!
 
 		let description = cronExpression.shortDescription
@@ -109,8 +106,7 @@ class DescriptionTests: XCTestCase {
 	}
 
 	// 0 0 13 * 6 *
-	func testDescriptionOfEveryFriday13th()
-	{
+	func testDescriptionOfEveryFriday13th() {
 		let cronExpression = CronExpression(minute: "0", hour: "0", day: "13", weekday: "5")!
 
 		let description = cronExpression.shortDescription
@@ -123,8 +119,7 @@ class DescriptionTests: XCTestCase {
 	}
 
 	// 0 0 * * 2,3,4,5,6 *
-	func testDescriptionOfWeekdays()
-	{
+	func testDescriptionOfWeekdays() {
 		let cronExpression = CronExpression(minute: "0", hour: "0", weekday: "1,2,3,4,5")!
 
 		let description = cronExpression.shortDescription
@@ -137,8 +132,7 @@ class DescriptionTests: XCTestCase {
 	}
 
 	// 0 12 * * 1,7 *
-	func testDescriptionOfWeekend()
-	{
+	func testDescriptionOfWeekend() {
 		let cronExpression = CronExpression(minute: "0", hour: "12", weekday: "6,7")!
 
 		let description = cronExpression.shortDescription
@@ -151,8 +145,7 @@ class DescriptionTests: XCTestCase {
 	}
 
 	// * * * * 2 *
-	func testDescriptionOfOnlyWeekdaySpecified()
-	{
+	func testDescriptionOfOnlyWeekdaySpecified() {
 		let cronExpression = CronExpression(weekday: "1")!
 
 		let description = cronExpression.shortDescription
@@ -164,8 +157,7 @@ class DescriptionTests: XCTestCase {
 	}
 
 	// 0 0 11 5 * 2026
-	func testDescriptionOfMay112016()
-	{
+	func testDescriptionOfMay112016() {
 		let cronExpression = CronExpression(minute: "0", hour: "0", day: "11", month: "5", year: "2026")!
 
 		let description = cronExpression.shortDescription
@@ -178,8 +170,7 @@ class DescriptionTests: XCTestCase {
 	}
 
 	// 0 0 * * 1,3 *
-	func testDescriptionOfMondayAndWednesday()
-	{
+	func testDescriptionOfMondayAndWednesday() {
 		let cronExpression = CronExpression(minute: "0", hour: "0", weekday: "1,3")!
 
 		let description = cronExpression.shortDescription
@@ -192,8 +183,7 @@ class DescriptionTests: XCTestCase {
 	}
 
 	// 30 * 11 * * *
-	func testEveryHourAt30MinutesOn11thOfTheMonth()
-	{
+	func testEveryHourAt30MinutesOn11thOfTheMonth() {
 		let cronExpression = CronExpression(minute: "30", day: "11")!
 
 		let description = cronExpression.shortDescription
@@ -204,18 +194,17 @@ class DescriptionTests: XCTestCase {
 		XCTAssertEqual(longDesc, expectedDescription)
 	}
 
-    func testEveryWeekdayAtEvery30MinutesOnATuesday()
-    {
+    func testEveryWeekdayAtEvery30MinutesOnATuesday() {
         let cronExpression = CronExpression(minute: "30", weekday:"2")!
-        
+
         let description = cronExpression.shortDescription
         let expectedDescription = "Every 30 minutes on a Tuesday"
         XCTAssertEqual(description, expectedDescription)
-        
+
         let longDesc = cronExpression.longDescription
         XCTAssertEqual(longDesc, expectedDescription)
     }
-    
+
 	// TODO: test all the crazy possible steps permutations
 
 }

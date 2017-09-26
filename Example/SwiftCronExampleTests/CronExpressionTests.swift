@@ -11,19 +11,19 @@ import XCTest
 
 @testable import SwiftCron
 
-class CronExpressionTests : XCTestCase {
-    
+class CronExpressionTests: XCTestCase {
+
     func testCreatingCronExpressionWithInvalidValueReturnsNil() {
         let invalidDay = "!@# $%^"
         let cronExpression = CronExpression(minute: "4", hour: "3", day: invalidDay, month: "1", weekday: "2", year: "2016")
-        
+
         XCTAssertNil(cronExpression)
     }
-    
+
     func testCronStringIsCorrect() {
         let cronString = "1 2 3 4 5 6"
         let cronExpression = CronExpression(cronString: cronString)!
-        
+
         XCTAssertEqual(cronExpression.stringRepresentation, cronString)
     }
 }

@@ -31,32 +31,32 @@ class DayTests: XCTestCase {
 
 		XCTAssertTrue(calendar.isDate(TestData.june8, inSameDayAs: nextRunDate!))
 	}
-    
+
     func testLastDayOfMonthInFeb2016Returns28() {
         let dateToTestFrom = TestData.feb1_2016
-        
+
         let cronExpressionUnderTest = CronExpression(day:"L", month:2, year: 2016)!
-        
+
         let expectedNextRunDate = TestData.feb28_2016
         let nextRunDate = cronExpressionUnderTest.getNextRunDate(dateToTestFrom)!
         XCTAssertTrue(Calendar.current.isDate(expectedNextRunDate, inSameDayAs: nextRunDate))
     }
-    
+
     func testLastDayOfMonthInMay2016Returns31() {
         let dateToTestFrom = TestData.may15_2016
-        
+
         let cronExpressionUnderTest = CronExpression(day:"L", month:5, year: 2016)!
-        
+
         let expectedNextRunDate = TestData.may31_2016
         let nextRunDate = cronExpressionUnderTest.getNextRunDate(dateToTestFrom)!
         XCTAssertTrue(Calendar.current.isDate(expectedNextRunDate, inSameDayAs: nextRunDate))
     }
-    
+
     func testLastDayOfMonthInJune2016Returns30() {
         let dateToTestFrom = TestData.june1
-        
+
         let cronExpressionUnderTest = CronExpression(day:"L", month:6, year: 2016)!
-        
+
         let expectedNextRunDate = TestData.june30_2016
         let nextRunDate = cronExpressionUnderTest.getNextRunDate(dateToTestFrom)!
         XCTAssertTrue(Calendar.current.isDate(expectedNextRunDate, inSameDayAs: nextRunDate))

@@ -7,39 +7,31 @@
 //
 
 import Foundation
-extension Date
-{
-	static func convertWeekdayWithMondayFirstToSundayFirst(_ weekday: Int) -> Int
-	{
+extension Date {
+	static func convertWeekdayWithMondayFirstToSundayFirst(_ weekday: Int) -> Int {
 		let sundayWhenFirstDayOfWeek = 1
 		let sundayWhenMondayFirst = 7
 
 		// Currently arranged from 1-7 starting at Sunday. Rearrange to 1-7 starting at Monday.
-		if weekday == sundayWhenMondayFirst
-		{
+		if weekday == sundayWhenMondayFirst {
 			return sundayWhenFirstDayOfWeek
 		}
 		return weekday + 1
 	}
 
-	func nextDate(matchingUnit unit: NSCalendar.Unit, value: String) -> Date?
-	{
+	func nextDate(matchingUnit unit: NSCalendar.Unit, value: String) -> Date? {
 		let calendar = Calendar.current
 
 		var valueToMatch: Int!
 
-		if value.contains(CronRepresentation.ListIdentifier)
-		{
+		if value.contains(CronRepresentation.ListIdentifier) {
 			// TODO: issue 13: Match list items
 			return nil
-		}
-		else
-		{
+		} else {
 			valueToMatch = Int(value)
 		}
 
-		guard valueToMatch != nil else
-		{
+		guard valueToMatch != nil else {
 			return nil
 		}
 
@@ -49,8 +41,7 @@ extension Date
 		case NSCalendar.Unit.era:
 			components.era = valueToMatch
 		case NSCalendar.Unit.year:
-			if calendar.component(.year, from: self) >= valueToMatch
-			{
+			if calendar.component(.year, from: self) >= valueToMatch {
 				return nil
 			}
 			components.year = valueToMatch
@@ -85,11 +76,11 @@ extension Date
 
         return calendar.nextDate(after: self, matching: components, matchingPolicy: .strict)
 	}
-    
+
     func getLastDayOfMonth() -> Int {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.month], from: self)
-        
+
         switch components.month! {
         case 1, 3, 5, 7, 8, 10, 12:
             return 31
@@ -100,5 +91,5 @@ extension Date
             return 30
         }
     }
-    
+
 }

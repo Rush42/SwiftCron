@@ -4,10 +4,8 @@
 
 import Foundation
 
-extension String: CronFieldTranslatable
-{
-    public var cronFieldRepresentation: String
-    {
+extension String: CronFieldTranslatable {
+    public var cronFieldRepresentation: String {
         return self
     }
 }

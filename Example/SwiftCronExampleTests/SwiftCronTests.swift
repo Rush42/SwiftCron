@@ -31,8 +31,7 @@ class SwiftCronTests: XCTestCase {
 		XCTAssertNil(cron)
 	}
 
-	func testPerformance()
-	{
+	func testPerformance() {
 		measure({
 			let cron = CronExpression(cronString: "32 4 8 12 3 *")
 			var runDate: Date?

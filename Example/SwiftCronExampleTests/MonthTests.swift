@@ -21,6 +21,5 @@ class MonthTests: XCTestCase {
 
 		XCTAssertTrue(calendar.isDate(TestData.june1, inSameDayAs: nextRunDate!))
 	}
-    
-    
+
 }

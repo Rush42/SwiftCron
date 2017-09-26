@@ -8,19 +8,16 @@
 
 import Foundation
 
-enum CronField: Int
-{
+enum CronField: Int {
 	case minute, hour, day, month, weekday, year
 	private static let fieldCheckers: Array<FieldCheckerInterface> = [MinutesField(), HoursField(), DayOfMonthField(), MonthField(), DayOfWeekField(), YearField()]
 
-	func getFieldChecker() -> FieldCheckerInterface
-	{
+	func getFieldChecker() -> FieldCheckerInterface {
 		return CronField.fieldCheckers[rawValue]
 	}
 }
 
-public struct CronRepresentation
-{
+public struct CronRepresentation {
 	static let NumberOfComponentsInValidString = 6
 	static let DefaultValue = "*"
 	static let StepIdentifier = "/"
@@ -34,8 +31,7 @@ public struct CronRepresentation
 	var hour: String
 	var minute: String
 
-	var biggestField: CronField?
-	{
+	var biggestField: CronField? {
 		let defaultValue = CronRepresentation.DefaultValue
 
 		if year != defaultValue { return CronField.year }
@@ -47,13 +43,11 @@ public struct CronRepresentation
 	}
 
 	// MARK: Issue 3: Get rid of. Should rather be using the enum
-	subscript(index: Int) -> String
-	{
+	subscript(index: Int) -> String {
 		return cronParts[index]
 	}
 
-	init(minute: String = CronRepresentation.DefaultValue, hour: String = CronRepresentation.DefaultValue, day: String = CronRepresentation.DefaultValue, month: String = CronRepresentation.DefaultValue, weekday: String = CronRepresentation.DefaultValue, year: String = CronRepresentation.DefaultValue)
-	{
+	init(minute: String = CronRepresentation.DefaultValue, hour: String = CronRepresentation.DefaultValue, day: String = CronRepresentation.DefaultValue, month: String = CronRepresentation.DefaultValue, weekday: String = CronRepresentation.DefaultValue, year: String = CronRepresentation.DefaultValue) {
 		self.minute = minute
 		self.hour = hour
 		self.day = day
@@ -65,11 +59,9 @@ public struct CronRepresentation
 		cronString = "\(minute) \(hour) \(day) \(month) \(weekday) \(year)"
 	}
 
-	init?(cronString: String)
-	{
+	init?(cronString: String) {
 		let parts = cronString.components(separatedBy: " ")
-		guard parts.count == CronRepresentation.NumberOfComponentsInValidString else
-		{
+		guard parts.count == CronRepresentation.NumberOfComponentsInValidString else {
 			return nil
 		}
 
@@ -77,8 +69,7 @@ public struct CronRepresentation
 	}
 
 	// MARK: Issue 3: pass in enum. Get value out of enum and check if it matches the default value?
-	static func isDefault(_ field: String) -> Bool
-	{
+	static func isDefault(_ field: String) -> Bool {
 		return field == CronRepresentation.DefaultValue
 	}
 

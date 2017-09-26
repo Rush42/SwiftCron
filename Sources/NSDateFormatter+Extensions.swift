@@ -8,31 +8,26 @@
 
 import Foundation
 
-extension DateFormatter
-{
-	private static let timeDateFormatter: DateFormatter =
-		{
+extension DateFormatter {
+	private static let timeDateFormatter: DateFormatter = {
 			let dateFormatter = DateFormatter()
 			dateFormatter.dateFormat = "HH:mm"
 			return dateFormatter
 	}()
 
-	private static let minuteDateFormatter: DateFormatter =
-		{
+	private static let minuteDateFormatter: DateFormatter = {
 			let dateFormatter = DateFormatter()
 			dateFormatter.dateFormat = "mm"
 			return dateFormatter
 	}()
 
-	private static let weekdayFormatter: DateFormatter =
-		{
+	private static let weekdayFormatter: DateFormatter = {
 			let formatter = DateFormatter()
 			formatter.dateFormat = "EEEE"
 			return formatter
 	}()
 
-	static func timeStringWithHour(_ hour: String, minute: String) -> String
-	{
+	static func timeStringWithHour(_ hour: String, minute: String) -> String {
 		let theHour = Int(hour)
 		let theMinute = Int(minute)
 //		assert(theMinute < 60 && theMinute > -1)
@@ -46,8 +41,7 @@ extension DateFormatter
 		return timeDateFormatter.string(from: date)
 	}
 
-	static func minuteStringWithMinute(_ minute: String) -> String
-	{
+	static func minuteStringWithMinute(_ minute: String) -> String {
 		let theMinute = Int(minute)!
 		assert(theMinute < 60 && theMinute > -1)
 
@@ -58,8 +52,7 @@ extension DateFormatter
 		return minuteDateFormatter.string(from: date)
 	}
 
-	static func convertStringToDaysOfWeek(_ weekdaysString: String) -> String
-	{
+	static func convertStringToDaysOfWeek(_ weekdaysString: String) -> String {
 
 		var daysOfWeekArray: Array<String> = []
 		let days = weekdaysString.components(separatedBy: CronRepresentation.ListIdentifier)
@@ -68,8 +61,7 @@ extension DateFormatter
 		let searchDate = Date(timeIntervalSince1970: 0)
 		var components = DateComponents()
 
-		for day in days
-		{
+		for day in days {
 			// Currently arranged from 1-7 starting at Sunday. Rearrange to 1-7 starting at Monday.
 			let dayNumber = Date.convertWeekdayWithMondayFirstToSundayFirst(Int(day)!)
 
@@ -77,16 +69,14 @@ extension DateFormatter
 			components.weekday = dayNumber
             let date = calendar.nextDate(after: searchDate, matching: components, matchingPolicy: .strict)!
 			let dayString = DateFormatter.weekdayFormatter.string(from: date)
-			if (days.contains(dayString) == false)
-			{
+			if (days.contains(dayString) == false) {
 				daysOfWeekArray.append(dayString)
 			}
 		}
 
 		// Sunday will be first. Make it last
 		let sunday = "Sunday"
-		if daysOfWeekArray.contains(sunday)
-		{
+		if daysOfWeekArray.contains(sunday) {
 			daysOfWeekArray.remove(at: daysOfWeekArray.index(of: sunday)!)
 			daysOfWeekArray.append(sunday)
 		}
