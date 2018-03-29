@@ -19,7 +19,7 @@ enum CronField: Int {
 
 public struct CronRepresentation {
 	static let NumberOfComponentsInValidString = 6
-	static let DefaultValue = "*"
+	public static let DefaultValue = "*"
 	static let StepIdentifier = "/"
 	static let ListIdentifier = ","
     static let RangeIdentifier = "-"
