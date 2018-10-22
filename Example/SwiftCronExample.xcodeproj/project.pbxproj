@@ -204,7 +204,6 @@
 				8679D26F1CE1F4730071D783 /* Resources */,
 				955360B1207221680040C5C5 /* Run SwiftLint */,
 				42C8277495ABC8132337E07F /* [CP] Embed Pods Frameworks */,
-				32DF2E51192F05F6A8F079E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -224,7 +223,6 @@
 				8679D2821CE1F4740071D783 /* Frameworks */,
 				8679D2831CE1F4740071D783 /* Resources */,
 				FB1006182B176A61E545DAAD /* [CP] Embed Pods Frameworks */,
-				1E27C67471A351797CF56101 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -297,36 +295,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1E27C67471A351797CF56101 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCronExampleTests/Pods-SwiftCronExampleTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		32DF2E51192F05F6A8F079E6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftCronExample/Pods-SwiftCronExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		42C8277495ABC8132337E07F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -526,7 +494,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -575,7 +543,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -591,7 +559,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Rush42.SwiftCronExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -606,7 +574,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Rush42.SwiftCronExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -624,7 +592,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftCronExampleTests/SwiftCronExampleTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftCronExample.app/SwiftCronExample";
 			};
 			name = Debug;
@@ -642,7 +610,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftCronExampleTests/SwiftCronExampleTests-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftCronExample.app/SwiftCronExample";
 			};
 			name = Release;
