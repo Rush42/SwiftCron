@@ -2,11 +2,10 @@ import Foundation
 
 class DayOfMonthField: Field, FieldCheckerInterface {
 	func isSatisfiedBy(_ date: Date, value: String) -> Bool {
-		let calendar = Calendar.current
 		let components = calendar.dateComponents([.day, .month, .year], from: date)
 
 		if value == "L" {
-			return components.day == date.getLastDayOfMonth()
+			return components.day == date.getLastDayOfMonth(calendar: calendar)
 		}
 
         let day = components.day!
@@ -14,11 +13,10 @@ class DayOfMonthField: Field, FieldCheckerInterface {
 	}
 
 	func increment(_ date: Date, toMatchValue: String) -> Date {
-		if let nextDate = date.nextDate(matchingUnit: .day, value: toMatchValue) {
+		if let nextDate = date.nextDate(matchingUnit: .day, value: toMatchValue, calendar: calendar) {
 			return nextDate
 		}
 
-		let calendar = Calendar.current
 		var midnightComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute, .weekday], from: date)
 		midnightComponents.hour = 0
 		midnightComponents.minute = 0

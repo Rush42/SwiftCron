@@ -20,23 +20,26 @@ import Foundation
 public class CronExpression {
 
 	var cronRepresentation: CronRepresentation
-
-	public convenience init?(cronString: String) {
+    var calendar: Calendar
+    
+    public convenience init?(cronString: String, calendar: Calendar = .current) {
 		guard let cronRepresentation = CronRepresentation(cronString: cronString) else {
 			return nil
 		}
-		self.init(cronRepresentation: cronRepresentation)
+        self.init(cronRepresentation: cronRepresentation, calendar: calendar)
 	}
 
-	public convenience init?(minute: CronFieldTranslatable = CronRepresentation.DefaultValue, hour: CronFieldTranslatable = CronRepresentation.DefaultValue, day: CronFieldTranslatable = CronRepresentation.DefaultValue, month: CronFieldTranslatable = CronRepresentation.DefaultValue, weekday: CronFieldTranslatable = CronRepresentation.DefaultValue, year: CronFieldTranslatable = CronRepresentation.DefaultValue) {
+	public convenience init?(minute: CronFieldTranslatable = CronRepresentation.DefaultValue, hour: CronFieldTranslatable = CronRepresentation.DefaultValue, day: CronFieldTranslatable = CronRepresentation.DefaultValue, month: CronFieldTranslatable = CronRepresentation.DefaultValue, weekday: CronFieldTranslatable = CronRepresentation.DefaultValue, year: CronFieldTranslatable = CronRepresentation.DefaultValue, calendar: Calendar = .current) {
 		let cronRepresentation = CronRepresentation(minute: minute.cronFieldRepresentation, hour: hour.cronFieldRepresentation, day: day.cronFieldRepresentation, month: month.cronFieldRepresentation, weekday: weekday.cronFieldRepresentation, year: year.cronFieldRepresentation)
-		self.init(cronRepresentation: cronRepresentation)
+		self.init(cronRepresentation: cronRepresentation, calendar: calendar)
 	}
 
-	private init?(cronRepresentation theCronRepresentation: CronRepresentation) {
+	private init?(cronRepresentation theCronRepresentation: CronRepresentation, calendar theCalendar: Calendar = .current) {
 		cronRepresentation = theCronRepresentation
+        calendar = theCalendar
 
 		let parts = cronRepresentation.cronParts
+        CronField.calendar = calendar
 		for i: Int in 0 ..< parts.count {
 			let field = CronField(rawValue: i)!
 			if field.getFieldChecker().validate(parts[i]) == false {
@@ -76,7 +79,6 @@ public class CronExpression {
 		}
 
 		var timesToSkip = skip
-		let calendar = Calendar.current
 		var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .weekday], from: date)
 		components.second = 0
 
@@ -138,7 +140,7 @@ public class CronExpression {
                 return false
             }
 		}
-		let day = Int(cronRepresentation.day) ?? Calendar.current.date(from: components)!.getLastDayOfMonth()
+        let day = Int(cronRepresentation.day) ?? calendar.date(from: components)!.getLastDayOfMonth(calendar: calendar)
 		//{
 			components.day = day
 
@@ -146,7 +148,7 @@ public class CronExpression {
                 return false
             }
 		//}
-		let dateFromComponents = Calendar.current.date(from: components)!
+		let dateFromComponents = calendar.date(from: components)!
         return date.compare(dateFromComponents) == .orderedAscending || date.compare(dateFromComponents) == .orderedSame
 	}
 }

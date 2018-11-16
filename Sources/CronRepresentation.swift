@@ -10,7 +10,13 @@ import Foundation
 
 enum CronField: Int {
 	case minute, hour, day, month, weekday, year
-	private static let fieldCheckers: Array<FieldCheckerInterface> = [MinutesField(), HoursField(), DayOfMonthField(), MonthField(), DayOfWeekField(), YearField()]
+    private static var fieldCheckers: Array<FieldChecker> = [MinutesField(), HoursField(), DayOfMonthField(), MonthField(), DayOfWeekField(), YearField()]
+    
+    static var calendar: Calendar = .current {
+        didSet {
+            fieldCheckers.forEach { $0.calendar = CronField.calendar }
+        }
+    }
 
 	func getFieldChecker() -> FieldCheckerInterface {
 		return CronField.fieldCheckers[rawValue]

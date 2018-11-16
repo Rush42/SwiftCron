@@ -3,7 +3,6 @@ import Foundation
 class MinutesField: Field, FieldCheckerInterface {
 
 	func isSatisfiedBy(_ date: Date, value: String) -> Bool {
-		let calendar = Calendar.current
 		let components = calendar.dateComponents([.minute], from: date)
 
         guard let minute = components.minute else { return false }
@@ -12,11 +11,10 @@ class MinutesField: Field, FieldCheckerInterface {
 	}
 
 	func increment(_ date: Date, toMatchValue: String) -> Date {
-		if let nextDate = date.nextDate(matchingUnit: .minute, value: toMatchValue) {
+		if let nextDate = date.nextDate(matchingUnit: .minute, value: toMatchValue, calendar: calendar) {
 			return nextDate
 		}
 
-		let calendar = Calendar.current
 		var components = DateComponents()
 		components.minute = 1
 

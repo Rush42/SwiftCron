@@ -3,7 +3,6 @@ import Foundation
 class YearField: Field, FieldCheckerInterface {
 
 	func isSatisfiedBy(_ date: Date, value: String) -> Bool {
-		let calendar = Calendar.current
 		let components = calendar.dateComponents([.year], from: date)
 
         guard let year = components.year else { return false }
@@ -12,11 +11,10 @@ class YearField: Field, FieldCheckerInterface {
 	}
 
 	func increment(_ date: Date, toMatchValue: String) -> Date {
-		if let nextDate = date.nextDate(matchingUnit: .year, value: toMatchValue) {
+		if let nextDate = date.nextDate(matchingUnit: .year, value: toMatchValue, calendar: calendar) {
 			return nextDate
 		}
 
-		let calendar = Calendar.current
 		let midnightComponents = calendar.dateComponents([.day, .month, .year], from: date)
 
 		var components = DateComponents()

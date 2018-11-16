@@ -19,9 +19,7 @@ extension Date {
 		return weekday + 1
 	}
 
-	func nextDate(matchingUnit unit: NSCalendar.Unit, value: String) -> Date? {
-		let calendar = Calendar.current
-
+	func nextDate(matchingUnit unit: NSCalendar.Unit, value: String, calendar: Calendar = .current) -> Date? {
 		var valueToMatch: Int!
 
 		if value.contains(CronRepresentation.ListIdentifier) {
@@ -77,8 +75,7 @@ extension Date {
         return calendar.nextDate(after: self, matching: components, matchingPolicy: .strict)
 	}
 
-    func getLastDayOfMonth() -> Int {
-        let calendar = Calendar.current
+    func getLastDayOfMonth(calendar: Calendar = .current) -> Int {
         let components = calendar.dateComponents([.month], from: self)
 
         switch components.month! {

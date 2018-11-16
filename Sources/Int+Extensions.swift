@@ -33,10 +33,9 @@ extension Int {
         return Int.ordinalNumberFormatter.string(from: NSNumber(value: self))!
 	}
 
-	func convertToMonth() -> String {
+	func convertToMonth(calendar: Calendar = .current) -> String {
 		assert(self < 13 && self > 0, "Not a valid month")
 
-		let calendar = Calendar.current
 		var components = DateComponents()
 		components.month = self
 		let date = calendar.date(from: components)!

@@ -27,13 +27,12 @@ extension DateFormatter {
 			return formatter
 	}()
 
-	static func timeStringWithHour(_ hour: String, minute: String) -> String {
+	static func timeStringWithHour(_ hour: String, minute: String, calendar: Calendar = .current) -> String {
 		let theHour = Int(hour)
 		let theMinute = Int(minute)
 //		assert(theMinute < 60 && theMinute > -1)
 //		assert(theHour > -1 && theHour < 25)
 
-		let calendar = Calendar.current
 		var components = DateComponents()
 		components.hour = theHour
 		components.minute = theMinute
@@ -41,23 +40,21 @@ extension DateFormatter {
 		return timeDateFormatter.string(from: date)
 	}
 
-	static func minuteStringWithMinute(_ minute: String) -> String {
+	static func minuteStringWithMinute(_ minute: String, calendar: Calendar = .current) -> String {
 		let theMinute = Int(minute)!
 		assert(theMinute < 60 && theMinute > -1)
 
-		let calendar = Calendar.current
 		var components = DateComponents()
 		components.minute = theMinute
 		let date = calendar.date(from: components)!
 		return minuteDateFormatter.string(from: date)
 	}
 
-	static func convertStringToDaysOfWeek(_ weekdaysString: String) -> String {
+	static func convertStringToDaysOfWeek(_ weekdaysString: String, calendar: Calendar = .current) -> String {
 
 		var daysOfWeekArray: Array<String> = []
 		let days = weekdaysString.components(separatedBy: CronRepresentation.ListIdentifier)
 
-		let calendar = Calendar.current
 		let searchDate = Date(timeIntervalSince1970: 0)
 		var components = DateComponents()
 
