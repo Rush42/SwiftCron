@@ -62,13 +62,22 @@ public class CronExpression {
 
 	// MARK: - Get Next Run Date
 
-	public func getNextRunDateFromNow() -> Date? {
-		return getNextRunDate(Date())
+    public func getNextRunDateFromNow(adjustingForTimeZone outputTimeZone: TimeZone = .current) -> Date? {
+		return getNextRunDate(Date(), adjustingForTimeZone: outputTimeZone)
 	}
 
-	public func getNextRunDate(_ date: Date) -> Date? {
-		return getNextRunDate(date, skip: 0)
+	public func getNextRunDate(_ date: Date, adjustingForTimeZone outputTimeZone: TimeZone = .current) -> Date? {
+        guard let nextRun = getNextRunDate(date, skip: 0) else { return nil }
+        return adjust(date: nextRun, for: outputTimeZone)
 	}
+    
+    func adjust(date: Date, for timeZone: TimeZone) -> Date {
+        let currentTZOffset = TimeZone.current.secondsFromGMT(for: date)
+        let outputTZOffset = timeZone.secondsFromGMT(for: date)
+        
+        let tzDifference = TimeInterval(currentTZOffset - outputTZOffset)
+        return date.addingTimeInterval(tzDifference)
+    }
 
 	func getNextRunDate(_ date: Date, skip: Int) -> Date? {
 		guard matchIsTheoreticallyPossible(date) else {
