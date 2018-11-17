@@ -84,6 +84,20 @@ let dateToStartSearchOn = NSDate()
 let nextRunDate = myCronExpression.getNextRunDate(dateToStartSearchOn)
 ```
 
+##### Custom timezones
+
+By default SwiftCron uses the system's current timezone to calculate the next run date. To override this behavior, just pass the timezone you want into `CronExpression.getNextRunDateFromNow(adjustingForTimeZone:)` or `CronExpression.getNextRunDateFromNow(_:adjustingForTimeZone:)` methods.
+
+```swift
+// Every 12th September at 10 AM
+let cronExpression = CronExpression(cronString: "0 10 12 9 * *")
+
+// Calculate the next run date as if the cron expression was created in the
+// America/Los_Angeles timezone
+let losAngeles = TimeZone(identifier: "America/Los_Angeles")!
+let nextRun = cronExpression.getNextRunDateFromNow(adjustingForTimeZone: losAngeles)
+```
+
 ## Contributing
 
 - Pull requests for bug fixes and new features are most welcome.
