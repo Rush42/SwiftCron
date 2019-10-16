@@ -18,7 +18,7 @@ enum CronField: Int {
 }
 
 public struct CronRepresentation {
-	static let NumberOfComponentsInValidString = 6
+	static let NumberOfComponentsInValidString = 5
 	public static let DefaultValue = "*"
 	static let StepIdentifier = "/"
 	static let ListIdentifier = ","
@@ -65,7 +65,7 @@ public struct CronRepresentation {
 			return nil
 		}
 
-		self.init(minute: parts[0], hour: parts[1], day: parts[2], month: parts[3], weekday: parts[4], year: parts[5])
+        self.init(minute: parts[0], hour: parts[1], day: parts[2], month: parts[3], weekday: parts[4], year: parts.indices.contains(5) ? parts[5] : CronRepresentation.DefaultValue)
 	}
 
 	// MARK: Issue 3: pass in enum. Get value out of enum and check if it matches the default value?
